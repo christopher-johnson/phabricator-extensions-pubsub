@@ -14,8 +14,12 @@ final class PubSubApplication extends PhabricatorApplication {
       return '/pubsub/';
   }
 
+  public function getFontIcon() {
+    return 'fa-rss';
+  }
+
   public function getIconName() {
-    return 'fa-puzzle-piece';
+    return 'fa-rss';
   }
 
   public function getShortDescription() {
