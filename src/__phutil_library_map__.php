@@ -23,6 +23,7 @@ phutil_register_library_map(array(
     'PubSubListController' => 'controller/PubSubListController.php',
     'PubSubProjectCustomField' => 'customfield/PubSubProjectCustomField.php',
     'PubSubQuery' => 'query/PubSubQuery.php',
+    'PubSubResponse' => 'config/PubSubResponse.php',
     'PubSubSetEventConduitAPIMethod' => 'conduit/PubSubSetEventConduitAPIMethod.php',
   ),
   'function' => array(),
@@ -43,6 +44,7 @@ phutil_register_library_map(array(
       'PhabricatorStandardCustomFieldInterface',
     ),
     'PubSubQuery' => 'PhabricatorCursorPagedPolicyAwareQuery',
+    'PubSubResponse' => 'AphrontStandaloneHTMLResponse',
     'PubSubSetEventConduitAPIMethod' => 'PubSubConduitAPIMethod',
   ),
 ));

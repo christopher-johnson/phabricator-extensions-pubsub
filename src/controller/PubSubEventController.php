@@ -4,10 +4,12 @@ final class PubSubEventController
     extends PubSubController {
 
     private $projectID;
+    private $event;
 
     public function handleRequest(AphrontRequest $request) {
+        try {
         $this->projectID = $request->getURIData('id');
-        $this->event = $request->getURIMap();
+        $this->event = $request->getRequestData();
         $api_token = PubSubConstants::API_TOKEN;
         $api_parameters =  array(
             'project' => $this->loadProject()->getPHID(),
@@ -17,8 +19,15 @@ final class PubSubEventController
         $client->setConduitToken($api_token);
 
         $result = $client->callMethodSynchronous('pubsub.setevent', $api_parameters);
+        } catch (Exception $ex) {
+            return new Aphront400Response();
+        }
+        return $this->setHTMLResponse();
     }
 
+    public function setHTMLResponse() {
+        return new PubSubResponse();
+    }
     public function loadProject() {
         $project = id(new PhabricatorProjectQuery())
             ->setViewer(PhabricatorUser::getOmnipotentUser())
