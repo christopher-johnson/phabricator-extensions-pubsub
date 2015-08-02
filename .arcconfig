@@ -1,0 +1,8 @@
+{
+  "project.name" : "subhub",
+  "unit.engine" : "PhpunitTestEngine",
+  "phpunit_config":  "src/tests/phpunit.xml",
+  "load" : [
+    "src/"
+  ]
+}
