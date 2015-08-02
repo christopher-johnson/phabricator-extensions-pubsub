@@ -32,7 +32,7 @@ final class PubSubApplication extends PhabricatorApplication {
             '' => 'PubSubListController',
             '(?P<action>add|delete)/'.
             '(?P<phid>[^/]+)/' => 'PubSubEditController',
-            'feed/(?P<id>[1-9]\d*)/' => 'PubSubFeedController',
+            'event/(?P<id>[1-9]\d*)/' => 'PubSubEventController',
             '/api/(?P<method>[^/]+)' => 'PubSubAPIController',
         ),
     );
