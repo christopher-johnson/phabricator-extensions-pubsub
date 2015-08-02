@@ -10,12 +10,13 @@ final class PubSubEventController
         try {
         $this->projectID = $request->getURIData('id');
         $this->event = $request->getRequestData();
+        $base_uri     = PhabricatorEnv::getEnvConfig('phabricator.base-uri');
         $api_token = PubSubConstants::API_TOKEN;
         $api_parameters =  array(
             'project' => $this->loadProject()->getPHID(),
             'data' => $this->event
         );
-        $client = new ConduitClient('http://phab.wmde.de/');
+        $client = new ConduitClient($base_uri);
         $client->setConduitToken($api_token);
 
         $result = $client->callMethodSynchronous('pubsub.setevent', $api_parameters);
