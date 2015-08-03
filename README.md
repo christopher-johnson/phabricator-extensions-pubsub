@@ -9,7 +9,7 @@ These events are routed at the callback endpoint to a specific project id and th
 
 **BUGS**
 
-Report issues by creating a task here:
+Report issues by creating a task:
 
 -  https://phabricator.wikimedia.org/maniphest/task/create/
 -  and then add the phabricator-pubsub-extension project.
