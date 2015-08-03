@@ -29,7 +29,7 @@ final class PubSubApplication extends PhabricatorApplication {
   public function getRoutes() {
     return array(
         '/pubsub/' => array(
-            '' => 'PubSubListController',
+            '(?P<id>[1-9]\d*)' => 'PubSubListController',
             '(?P<action>add|delete)/'.
             '(?P<phid>[^/]+)/' => 'PubSubEditController',
             'event/(?P<id>[1-9]\d*)/' => 'PubSubEventController',

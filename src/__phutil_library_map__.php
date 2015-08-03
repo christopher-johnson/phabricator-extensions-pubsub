@@ -9,6 +9,7 @@
 phutil_register_library_map(array(
   '__library_version__' => 2,
   'class' => array(
+    'CelerityPubSubResources' => 'celerity/CelerityPubSubResources.php',
     'PubSubAPIController' => 'controller/PubSubApiController.php',
     'PubSubApplication' => 'application/PubSubApplication.php',
     'PubSubConduitAPIMethod' => 'conduit/PubSubConduitAPIMethod.php',
@@ -18,7 +19,10 @@ phutil_register_library_map(array(
     'PubSubEditController' => 'controller/PubSubEditController.php',
     'PubSubEventController' => 'controller/PubSubEventController.php',
     'PubSubEventData' => 'storage/PubSubEventData.php',
+    'PubSubEventDataProvider' => 'storage/PubSubEventDataProvider.php',
     'PubSubEventField' => 'customfield/PubHubEventField.php',
+    'PubSubEventQuery' => 'query/PubSubEventQuery.php',
+    'PubSubEventTableView' => 'views/PubSubEventTableView.php',
     'PubSubFeedStory' => 'transactions/PubSubFeedStory.php',
     'PubSubListController' => 'controller/PubSubListController.php',
     'PubSubProjectCustomField' => 'customfield/PubSubProjectCustomField.php',
@@ -28,6 +32,7 @@ phutil_register_library_map(array(
   ),
   'function' => array(),
   'xmap' => array(
+    'CelerityPubSubResources' => 'CelerityResourcesOnDisk',
     'PubSubAPIController' => 'PhabricatorConduitController',
     'PubSubApplication' => 'PhabricatorApplication',
     'PubSubConduitAPIMethod' => 'ConduitAPIMethod',
@@ -35,8 +40,13 @@ phutil_register_library_map(array(
     'PubSubDAO' => 'PhabricatorLiskDAO',
     'PubSubEditController' => 'PubSubController',
     'PubSubEventController' => 'PubSubController',
-    'PubSubEventData' => 'PubSubDAO',
+    'PubSubEventData' => array(
+      'PhabricatorProjectDAO',
+      'PhabricatorApplicationTransactionInterface',
+    ),
     'PubSubEventField' => 'PubSubProjectCustomField',
+    'PubSubEventQuery' => 'PubSubDAO',
+    'PubSubEventTableView' => 'Phobject',
     'PubSubFeedStory' => 'PhabricatorFeedStory',
     'PubSubListController' => 'PubSubController',
     'PubSubProjectCustomField' => array(
