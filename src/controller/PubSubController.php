@@ -35,7 +35,7 @@ abstract class PubSubController extends PhabricatorController {
         ->executeWithCursorPager($pager);
 
     $xactions = array_reverse($xactions);
-
+    $events = array();
     $parser = new PhutilJSONParser();
     if ($engine) {
       foreach ($xactions as $xaction) {
@@ -45,8 +45,8 @@ abstract class PubSubController extends PhabricatorController {
               PhabricatorApplicationTransactionComment::MARKUP_FIELD_COMMENT);
         }
         if ($xaction->getNewValue()) {
-          $events[] = $parser->parse($xaction->getNewValue());
-        }
+          $events[] = json_decode($xaction->getNewValue(), true);
+          }
       }
       $engine->process();
       $view->setMarkupEngine($engine);

@@ -17,10 +17,11 @@ final class PubSubEventTableView extends Phobject {
     $projects_table = id(new SprintTableView($this->tableData->getRows()))
         ->setHeaders(
             array(
-                'type',
-                'login',
-                'commit url',
                 'ref',
+                'before',
+                'after',
+                'compare',
+                'repo',
                 'message',
                 'time',
             ))

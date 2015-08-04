@@ -33,24 +33,22 @@ final class PubSubEventDataProvider {
 
   private function buildRowSet($event) {
     $values = array();
-    foreach ($event as $key=>$value) {
-      $values[] = str_replace('",', "", trim($value, '"'));
-    }
-    $rows = array (
-      $values[1],
-      $values[4],
+    $row = array (
+      $event['ref'],
+      $event['before'],
+      $event['after'],
       phutil_tag(
           'a',
           array(
-              'href' => $values[6],
+              'href' => $event['compare'],
               'style' => 'font-weight:bold',
           ),
-          $values[6]),
-      $values[14],
-      $values[21],
-      $values[24],
+          $event['compare']),
+      $event['repository']['name'],
+      $event['head_commit']['message'],
+      $event['head_commit']['timestamp'],
     );
-    return $rows;
+    return $row;
   }
 
 }
