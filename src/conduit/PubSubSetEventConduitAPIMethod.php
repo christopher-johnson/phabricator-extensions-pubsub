@@ -30,7 +30,7 @@ final class PubSubSetEventConduitAPIMethod extends PubSubConduitAPIMethod {
 
     $xactions = array();
     $data = $request->getValue('data');
-    //$storage_value = $data['payload'];
+    // $storage_value = $data['payload'];
     $xactions[] = id(new PhabricatorProjectTransaction())
         ->setTransactionType(PhabricatorTransactions::TYPE_CUSTOMFIELD)
         ->setMetadataValue('customfield:key', 'isdc:pubsub:event')

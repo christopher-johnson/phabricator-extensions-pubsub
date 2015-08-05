@@ -1,6 +1,4 @@
 <?php
 
 final class PubSubEditController
-    extends PubSubController {
-
-}
+    extends PubSubController {}

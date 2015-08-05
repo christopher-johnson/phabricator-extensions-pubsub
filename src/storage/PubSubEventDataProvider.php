@@ -4,9 +4,15 @@ final class PubSubEventDataProvider {
 
   private $events;
   private $rows;
+  private $project;
 
   public function setTransactions ($project_xactions) {
     $this->events = $project_xactions;
+    return $this;
+  }
+
+  public function setProject($project) {
+    $this->project = $project;
     return $this;
   }
 
@@ -17,6 +23,10 @@ final class PubSubEventDataProvider {
 
   public function getRows () {
     return $this->rows;
+  }
+
+  public function getProject () {
+    return $this->project;
   }
 
   private function buildEventListData() {
@@ -34,20 +44,18 @@ final class PubSubEventDataProvider {
   private function buildRowSet($event) {
     $values = array();
     $row = array (
-      $event['ref'],
-      $event['before'],
-      $event['after'],
       phutil_tag(
-          'a',
-          array(
-              'href' => $event['compare'],
-              'style' => 'font-weight:bold',
-          ),
-          $event['compare']),
+            'a',
+            array(
+                'href' => $event['compare'],
+                'style' => 'font-weight:bold',
+            ),
+          $event['head_commit']['message']),
+      $event['head_commit']['author']['name'],
       $event['repository']['name'],
-      $event['head_commit']['message'],
+      $event['ref'],
       $event['head_commit']['timestamp'],
-    );
+     );
     return $row;
   }
 

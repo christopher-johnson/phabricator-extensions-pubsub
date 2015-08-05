@@ -52,17 +52,17 @@ abstract class PubSubController extends PhabricatorController {
       $view->setMarkupEngine($engine);
     }
     return $events;
-    //$timeline = $view
-    //->setUser($viewer)
-    //->setObjectPHID($object->getPHID())
-    //->setTransactions($xactions)
+    // $timeline = $view
+    // ->setUser($viewer)
+    // ->setObjectPHID($object->getPHID())
+    // ->setTransactions($xactions)
     // ->setPager($pager)
-    //->setRenderData($render_data)
-    //->setQuoteTargetID($this->getRequest()->getStr('quoteTargetID'))
+    // ->setRenderData($render_data)
+    // ->setQuoteTargetID($this->getRequest()->getStr('quoteTargetID'))
     // ->setQuoteRef($this->getRequest()->getStr('quoteRef'));
-    //$object->willRenderTimeline($timeline, $this->getRequest());
+    // $object->willRenderTimeline($timeline, $this->getRequest());
 
-    //return $timeline;
+    // return $timeline;
   }
 
   public function loadProject($projectID) {

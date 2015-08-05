@@ -11,29 +11,27 @@ final class PubSubEventTableView extends Phobject {
 
   public function buildEventsTable () {
     $id = 'event-list';
+    $project_name = $this->tableData->getProject()->getName();
     Javelin::initBehavior('pubsub-events-table', array(
         'hardpoint' => $id,
     ), 'pubsub');
     $projects_table = id(new SprintTableView($this->tableData->getRows()))
         ->setHeaders(
             array(
-                'ref',
-                'before',
-                'after',
-                'compare',
-                'repo',
-                'message',
-                'time',
+                'Subject',
+                'Author',
+                'Repository',
+                'Branch',
+                'Updated',
             ))
         ->setTableId('event-list')
         ->setClassName('display');
 
-    $projects_table = id(new PHUIBoxView())
-        ->appendChild($projects_table)
-        ->addMargin(PHUI::MARGIN_LARGE);
+    $projects_table = id(new PHUIObjectBoxView())
+        ->setHeaderText(pht('GitHub Push Events for '.$project_name))
+        ->appendChild($projects_table);
 
     return $projects_table;
   }
 
 }
-

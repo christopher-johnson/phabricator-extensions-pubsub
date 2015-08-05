@@ -13,12 +13,15 @@ final class PubSubEventController
         $api_token = PubSubConstants::API_TOKEN;
         $api_parameters =  array(
             'project' => $this->loadProject($this->projectID)->getPHID(),
-            'data' => $data
+            'data' => $data,
         );
         $client = new ConduitClient($base_uri);
         $client->setConduitToken($api_token);
-
-        $result = $client->callMethodSynchronous('pubsub.setevent', $api_parameters);
+        if ($api_parameters['data']) {
+            $result = $client->callMethodSynchronous('pubsub.setevent', $api_parameters);
+        } else {
+           return new Aphront400Response();
+        }
         } catch (Exception $ex) {
             return new Aphront400Response();
         }

@@ -8,9 +8,7 @@ final class PubSubResponse extends AphrontStandaloneHTMLResponse {
     return $this;
   }
 
-  protected function getResources() {
-
-  }
+  protected function getResources() {}
 
   protected function getResponseTitle() {
     return pht('PubSub Response');
@@ -20,8 +18,7 @@ final class PubSubResponse extends AphrontStandaloneHTMLResponse {
     return '';
   }
 
-  protected function getResponseBody() {
-  }
+  protected function getResponseBody() {}
 
   protected function buildPlainTextResponseString() {
     return pht(

@@ -10,6 +10,7 @@ final class PubSubListController
     $project = $this->loadProject($projectID);
     $event_model = id(new PubSubEventDataProvider())
         ->setTransactions($this->buildProjectTransactions($project))
+        ->setProject($project)
         ->execute();
     $eventlist_table = id(new PubSubEventTableView())
         ->setTableData($event_model)
@@ -18,7 +19,7 @@ final class PubSubListController
     $this->view = $nav->selectFilter($this->view, 'list');
     $nav->appendChild(
         array(
-            $eventlist_table
+            $eventlist_table,
         ));
     return $this->buildApplicationPage(
         $nav,
@@ -34,7 +35,8 @@ final class PubSubListController
         $project,
         id(new PhabricatorProjectTransactionQuery())
             ->withTransactionTypes(array(PhabricatorTransactions::TYPE_CUSTOMFIELD))
-            ->withAuthorPHIDs(array(PubSubConstants::PUBSUB_USER_PHID)),
+            ->withAuthorPHIDs(array(PubSubConstants::PUBSUB_USER_PHID))
+            ->withObjectPHIDs(array($project->getPHID())),
         $engine);
 
     return $timeline;

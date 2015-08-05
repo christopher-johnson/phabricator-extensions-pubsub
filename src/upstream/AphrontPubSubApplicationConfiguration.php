@@ -5,7 +5,7 @@
  *
  * @concrete-extensible
  */
-class AphrontDefaultApplicationConfiguration
+class AphrontPubSubApplicationConfiguration
     extends AphrontApplicationConfiguration {
 
   public function __construct() {}
@@ -35,7 +35,7 @@ class AphrontDefaultApplicationConfiguration
     $raw_input = PhabricatorStartup::getRawInput();
     if (strlen($raw_input) && !$is_form_data && !$is_json_data) {
       $data += $parser->parseQueryString($raw_input);
-    } else if ($is_json_data) {
+    } else if (strlen($raw_input) &&  $is_json_data) {
       $data += $jsonparser->parse(urldecode($raw_input));
     } else if ($_POST) {
       $data += $_POST;
