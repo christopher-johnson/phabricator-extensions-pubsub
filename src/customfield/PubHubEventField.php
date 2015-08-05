@@ -26,4 +26,9 @@ final class PubSubEventField extends PubSubProjectCustomField {
     return $this->renderTextProxyPropertyViewValue($this->textproxy, $handles);
   }
 
+  // == Search
+  public function shouldAppearInPropertyView() {
+    return false;
+  }
+
 }
