@@ -7,10 +7,10 @@
  */
 return array(
   'names' => array(
-    'behavior-pubsub-events-table.js' => 'dd4451ef',
+    'behavior-pubsub-events-table.js' => 'ea040b7a',
   ),
   'symbols' => array(
-    'javelin-behavior-pubsub-events-table' => 'dd4451ef',
+    'javelin-behavior-pubsub-events-table' => 'ea040b7a',
   ),
   'requires' => array(),
   'packages' => array(),

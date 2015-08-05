@@ -5,7 +5,7 @@
 JX.behavior('pubsub-events-table', function (config) {
     jQuery( document ).ready(function ($) {
         $('#event-list').DataTable({
-            "order": [[ 0, "asc" ]],
+            "order": [[ 4, "desc" ]],
             "iDisplayLength": 100
         });
     });

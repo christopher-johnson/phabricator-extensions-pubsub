@@ -7,26 +7,37 @@ final class PubSubListController
 
   public function handleRequest(AphrontRequest $request) {
     $projectID = $request->getURIData('id');
-    $project = $this->loadProject($projectID);
-    $event_model = id(new PubSubEventDataProvider())
-        ->setTransactions($this->buildProjectTransactions($project))
-        ->setProject($project)
-        ->execute();
-    $eventlist_table = id(new PubSubEventTableView())
-        ->setTableData($event_model)
-        ->buildEventsTable();
     $nav = $this->buildNavMenu();
     $this->view = $nav->selectFilter($this->view, 'list');
-    $nav->appendChild(
-        array(
-            $eventlist_table,
-        ));
-    return $this->buildApplicationPage(
-        $nav,
-        array(
-            'title' => array(pht('Event List')),
-            'device' => true,
-        ));
+
+    if (!$projectID) {
+      return $this->buildApplicationPage(
+          $nav,
+          array(
+              'title' => array(pht('Event List')),
+              'device' => true,
+          ));
+    } else {
+      $project = $this->loadProject($projectID);
+      $event_model = id(new PubSubEventDataProvider())
+          ->setTransactions($this->buildProjectTransactions($project))
+          ->setProject($project)
+          ->execute();
+      $eventlist_table = id(new PubSubEventTableView())
+          ->setTableData($event_model)
+          ->buildEventsTable();
+
+      $nav->appendChild(
+          array(
+              $eventlist_table,
+          ));
+      return $this->buildApplicationPage(
+          $nav,
+          array(
+              'title' => array(pht('Event List')),
+              'device' => true,
+          ));
+    }
   }
 
   public function buildProjectTransactions(PhabricatorProject $project) {
