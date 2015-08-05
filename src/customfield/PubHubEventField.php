@@ -9,7 +9,6 @@ final class PubSubEventField extends PubSubProjectCustomField {
         $this->getFieldDescription());
   }
 
-  // == General field identity stuff
   public function getFieldKey() {
     return 'isdc:pubsub:event';
   }
@@ -26,7 +25,6 @@ final class PubSubEventField extends PubSubProjectCustomField {
     return $this->renderTextProxyPropertyViewValue($this->textproxy, $handles);
   }
 
-  // == Search
   public function shouldAppearInPropertyView() {
     return false;
   }
